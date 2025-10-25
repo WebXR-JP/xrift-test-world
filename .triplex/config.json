@@ -1,0 +1,9 @@
+{
+  "$schema": "https://triplex.dev/config.schema.json",
+  "components": ["../src/components/*.tsx"],
+  "files": ["../src/**/*.tsx"],
+  "provider": "./provider.tsx",
+  "experimental": {
+    "xr_editing": true
+  }
+}

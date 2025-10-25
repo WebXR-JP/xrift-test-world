@@ -1,0 +1,40 @@
+{
+  "name": "@xrift/test-world",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@react-three/drei": "^10.7.3",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/rapier": "^2.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.176.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@types/three": "^0.176.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.6.2",
+    "vite": "^6.0.1",
+    "vite-plugin-dts": "^4.0.0"
+  }
+}
