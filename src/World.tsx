@@ -3,9 +3,13 @@ import { useRef } from 'react'
 import { Mesh } from 'three'
 import { Mirror } from './components/Mirror'
 import { COLORS, WORLD_CONFIG } from './constants'
-import { Props } from './types'
 
-export const TestWorld: React.FC<Props> = ({ position = [0, 0, 0], scale = 1 }) => {
+export interface WorldProps {
+  position?: [number, number, number]
+  scale?: number
+}
+
+export const World: React.FC<WorldProps> = ({ position = [0, 0, 0], scale = 1 }) => {
   const groundRef = useRef<Mesh>(null)
   const worldSize = WORLD_CONFIG.size * scale
   const wallHeight = WORLD_CONFIG.wallHeight * scale

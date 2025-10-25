@@ -1,2 +1,2 @@
-export { TestWorld } from './TestWorld'
-export type { Props as TestWorldProps } from './types'
+export { World } from './World'
+export type { WorldProps } from './World'
