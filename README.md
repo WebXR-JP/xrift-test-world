@@ -14,7 +14,6 @@ XRiftのUGCワールド機能検証用テストワールドパッケージ
 - 階段構造
 - 狭い隙間テスト
 - 鏡（Reflector使用）
-- 東京の街並みスカイボックス
 
 ## インストール
 
@@ -25,13 +24,13 @@ npm install @xrift/test-world
 ## 使用方法
 
 ```tsx
-import { TestWorld } from '@xrift/test-world'
+import { World } from '@xrift/test-world'
 
 function App() {
   return (
     <Canvas>
       <Physics>
-        <TestWorld position={[0, 0, 0]} scale={1} />
+        <World position={[0, 0, 0]} scale={1} />
       </Physics>
     </Canvas>
   )
