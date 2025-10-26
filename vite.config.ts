@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import federation from '@originjs/vite-plugin-federation'
 
 export default defineConfig({
   plugins: [
@@ -9,43 +10,53 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
     }),
-  ],
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, 'src/index.tsx'),
-      name: 'XRiftTestWorld',
-      formats: ['es'],
-      fileName: () => 'index.js',
-    },
-    rollupOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'three',
-        '@react-three/fiber',
-        '@react-three/rapier',
-        '@react-three/drei',
-      ],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          three: 'THREE',
+    federation({
+      name: 'xrift_test_world',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './World': './src/index.tsx',
+      },
+      shared: {
+        react: {
+          singleton: true,
+          requiredVersion: '^19.0.0',
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: '^19.0.0',
+        },
+        'react/jsx-runtime': {
+          singleton: true,
+        },
+        three: {
+          singleton: true,
+          requiredVersion: '^0.176.0',
+        },
+        '@react-three/fiber': {
+          singleton: true,
+          requiredVersion: '^9.3.0',
+        },
+        '@react-three/rapier': {
+          singleton: true,
+          requiredVersion: '^2.1.0',
+        },
+        '@react-three/drei': {
+          singleton: true,
+          requiredVersion: '^10.7.3',
         },
       },
-    },
+    }),
+  ],
+  build: {
+    target: 'esnext',
+    minify: false,
+    cssCodeSplit: false,
+    assetsDir: '',
   },
   resolve: {
     alias: {
       '~': path.resolve(__dirname, './src'),
     },
-    dedupe: ['three', '@react-three/fiber', 'react', 'react-dom'],
-  },
-  optimizeDeps: {
-    include: [
-      '@react-three/rapier',
-    ],
   },
   define: {
     global: 'globalThis',
