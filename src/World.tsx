@@ -2,6 +2,7 @@ import { RigidBody } from '@react-three/rapier'
 import { useRef } from 'react'
 import { Mesh } from 'three'
 import { Mirror } from './components/Mirror'
+import { RotatingObject } from './components/RotatingObject'
 import { COLORS, WORLD_CONFIG } from './constants'
 
 export interface WorldProps {
@@ -175,6 +176,14 @@ export const World: React.FC<WorldProps> = ({ position = [0, 0, 0], scale = 1 })
       <Mirror
         position={[0, 1.2 * scale, -9.5]}
         size={[2 * scale, 2 * scale]}
+      />
+
+      {/* アニメーション: ぐるぐる回るオブジェクト */}
+      <RotatingObject
+        radius={4}
+        speed={1}
+        height={2}
+        scale={scale}
       />
     </group>
   )
