@@ -1,12 +1,21 @@
-# @xrift/test-world
+# XRift World Template
 
-XRiftのUGCワールド機能検証用テストワールドパッケージ
+XRiftで動作するWebXRワールドを作成するための公式テンプレートです。
 
 ## 概要
 
-このパッケージは、NPM経由でのワールド配信機能の実現可能性を検証するために作成されたテストワールドです。React Three FiberとRapier物理エンジンを使用した3Dワールドを提供します。
+このテンプレートは、XRift CLI (`npx @xrift/cli create`) で新しいワールドプロジェクトを作成する際に使用されます。React Three Fiber、Rapier物理エンジン、Three.jsを使用した3Dワールドの基本構成がセットアップ済みで、すぐに開発を始められます。
 
-## 特徴
+## このテンプレートに含まれる機能
+
+- **React Three Fiber**: Reactコンポーネントとして3Dシーンを構築
+- **Rapier物理エンジン**: リアルな物理演算（衝突判定、重力など）
+- **Three.js**: WebGLベースの3Dグラフィックス
+- **Module Federation**: XRiftプラットフォームでの動的読み込み対応
+- **TypeScript**: 型安全な開発環境
+- **サンプルワールド**: 物理演算やオブジェクト配置の実装例
+
+### サンプルワールドの内容
 
 - 20m × 20mの閉じた空間
 - 物理演算対応（壁、地面との衝突判定）
@@ -14,59 +23,77 @@ XRiftのUGCワールド機能検証用テストワールドパッケージ
 - 階段構造
 - 狭い隙間テスト
 - 鏡（Reflector使用）
+- アニメーション実装例（回転するオブジェクト）
 
-## インストール
+## 使い方
 
-```bash
-npm install @xrift/test-world
-```
-
-## 使用方法
-
-```tsx
-import { World } from '@xrift/test-world'
-
-function App() {
-  return (
-    <Canvas>
-      <Physics>
-        <World position={[0, 0, 0]} scale={1} />
-      </Physics>
-    </Canvas>
-  )
-}
-```
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| position | [number, number, number] | [0, 0, 0] | ワールドの配置位置 |
-| scale | number | 1 | ワールドのスケール |
-
-## 必要な依存関係
-
-- React 19+
-- Three.js 0.176+
-- @react-three/fiber 9.3+
-- @react-three/rapier 2.1+
-- @react-three/drei 10.7+
-
-## 開発
+### 1. 新しいワールドプロジェクトを作成
 
 ```bash
-# 依存関係のインストール
+npx @xrift/cli create my-world
+```
+
+このコマンドで、このテンプレートを基にした新しいプロジェクトが作成されます。
+
+### 2. 開発サーバーを起動
+
+```bash
+cd my-world
 npm install
+npm run dev
+```
 
-# 開発サーバー起動
+### 3. カスタマイズ
+
+- `src/World.tsx`: メインのワールドコンポーネント
+- `src/components/`: 各種3Dオブジェクトのコンポーネント
+- `vite.config.ts`: ビルド設定
+- `package.json`: プロジェクト情報
+
+詳細なカスタマイズ方法は [TEMPLATE.md](./TEMPLATE.md) を参照してください。
+
+### 4. ビルド
+
+```bash
+npm run build
+```
+
+Module Federation形式でビルドされ、XRiftプラットフォームで読み込み可能な形式で `dist/` に出力されます。
+
+## 開発コマンド
+
+```bash
+# 開発サーバー起動（ホットリロード有効）
 npm run dev
 
-# ビルド
+# プロダクションビルド
 npm run build
 
-# 型チェック
+# ビルド結果のプレビュー
+npm run preview
+
+# TypeScript型チェック
 npm run typecheck
 ```
+
+## 技術スタック
+
+- **React**: 19.x
+- **Three.js**: 0.176.x
+- **@react-three/fiber**: 9.3.x
+- **@react-three/rapier**: 2.1.x（物理エンジン）
+- **@react-three/drei**: 10.7.x（Three.js用ヘルパー）
+- **TypeScript**: 5.x
+- **Vite**: 6.x（ビルドツール）
+
+## ワールドの公開
+
+XRiftプラットフォームでワールドを公開する方法については、[XRift公式ドキュメント](https://github.com/WebXR-JP/xrift-cli)を参照してください。
+
+## サポート
+
+- Issues: [GitHub Issues](https://github.com/WebXR-JP/xrift-world-template/issues)
+- XRift CLI: [xrift-cli repository](https://github.com/WebXR-JP/xrift-cli)
 
 ## ライセンス
 
