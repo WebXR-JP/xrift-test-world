@@ -11,7 +11,7 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
     federation({
-      name: 'xrift_test_world',
+      name: 'xrift_world_template',
       filename: 'remoteEntry.js',
       exposes: {
         './World': './src/index.tsx',

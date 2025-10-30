@@ -1,6 +1,7 @@
 {
-  "name": "@xrift/test-world",
-  "version": "0.2.1",
+  "name": "@xrift/world-template",
+  "version": "1.0.0",
+  "description": "XRift world template for creating WebXR experiences with React Three Fiber and physics simulation",
   "type": "module",
   "main": "./dist/remoteEntry.js",
   "module": "./dist/remoteEntry.js",
