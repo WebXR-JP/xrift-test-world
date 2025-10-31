@@ -8,9 +8,9 @@ import type { WorldBaseUrlContextValue } from '../types/world'
  * Module Federationにより同じReactインスタンスを共有するため、
  * Contextも自動的に共有されます。
  *
- * @internal
+ * ローカル開発時は XRiftDevProvider を使用してこのContextを提供します。
  */
-const WorldBaseUrlContext = createContext<WorldBaseUrlContextValue | null>(null)
+export const WorldBaseUrlContext = createContext<WorldBaseUrlContextValue | null>(null)
 
 /**
  * XRift固有の情報を取得するフック

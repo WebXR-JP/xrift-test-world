@@ -100,6 +100,30 @@ function MyPBRMaterial() {
 
 **重要**: アセットパスを指定する際は、必ず`useXRift()`で取得した`assetBasePath`を使用してください。これにより、XRiftプラットフォーム上で正しくアセットが読み込まれます。
 
+##### ローカル開発環境での設定
+
+ローカルで開発する際は、`XRiftDevProvider`を使用してベースパスを設定してください。
+
+```typescript
+// src/dev.tsx（開発用エントリーポイント）
+import { XRiftDevProvider } from './utils/XRiftDevProvider'
+import { World } from './World'
+
+function App() {
+  return (
+    <XRiftDevProvider baseUrl="/public">
+      <Canvas>
+        <Physics>
+          <World />
+        </Physics>
+      </Canvas>
+    </XRiftDevProvider>
+  )
+}
+```
+
+本番環境（XRiftプラットフォーム上）では、フロントエンド側が自動的にContextを注入するため、`XRiftDevProvider`は不要です。
+
 ### 4. ビルド
 
 ```bash
