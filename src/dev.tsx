@@ -5,11 +5,11 @@
  * 本番ビルド（npm run build）では使用されません。
  */
 
+import { XRiftProvider } from '@xrift/world-components'
 import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { XRiftDevProvider } from './utils/XRiftDevProvider'
 import { World } from './World'
 
 const rootElement = document.getElementById('root')
@@ -18,7 +18,7 @@ if (!rootElement) throw new Error('Root element not found')
 createRoot(rootElement).render(
   <StrictMode>
     {/* 開発環境用のProvider - ベースパスを指定 */}
-    <XRiftDevProvider baseUrl="/public">
+    <XRiftProvider baseUrl="/public/">
       <div style={{ width: '100vw', height: '100vh' }}>
         <Canvas
           shadows
@@ -30,6 +30,6 @@ createRoot(rootElement).render(
           </Physics>
         </Canvas>
       </div>
-    </XRiftDevProvider>
+    </XRiftProvider>
   </StrictMode>
 )
