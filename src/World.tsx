@@ -192,7 +192,9 @@ export const World: React.FC<WorldProps> = ({ position = [0, 0, 0], scale = 1 })
       />
 
       {/* Duck 3Dモデル - useXRiftの使用例 */}
-      <Duck position={[-2, 0.5, 0]} scale={1} />
+      <RigidBody type="dynamic" colliders="cuboid" restitution={0} friction={0}>
+        <Duck position={[-2, 0.5, 0]} scale={1} />
+      </RigidBody>
     </group>
   )
 }
