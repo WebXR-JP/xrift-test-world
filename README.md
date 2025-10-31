@@ -132,7 +132,7 @@ import { World } from './World'
 
 function App() {
   return (
-    <XRiftProvider baseUrl="/public/">
+    <XRiftProvider baseUrl="/">
       <Canvas>
         <Physics>
           <World />
