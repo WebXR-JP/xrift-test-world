@@ -8,6 +8,7 @@
 import { XRiftProvider } from '@xrift/world-components'
 import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
+import { OrbitControls } from '@react-three/drei'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { World } from './World'
@@ -25,6 +26,7 @@ createRoot(rootElement).render(
           camera={{ position: [0, 5, 10], fov: 75 }}
           gl={{ preserveDrawingBuffer: true }}
         >
+          <OrbitControls />
           <Physics>
             <World />
           </Physics>
