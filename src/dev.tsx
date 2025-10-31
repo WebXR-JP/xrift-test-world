@@ -18,7 +18,7 @@ if (!rootElement) throw new Error('Root element not found')
 createRoot(rootElement).render(
   <StrictMode>
     {/* 開発環境用のProvider - ベースパスを指定 */}
-    <XRiftProvider baseUrl="/public/">
+    <XRiftProvider baseUrl="/">
       <div style={{ width: '100vw', height: '100vh' }}>
         <Canvas
           shadows
