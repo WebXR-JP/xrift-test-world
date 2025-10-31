@@ -52,6 +52,47 @@ npm run dev
 
 詳細なカスタマイズ方法は [TEMPLATE.md](./TEMPLATE.md) を参照してください。
 
+#### アセット（GLTFモデル、テクスチャ）の読み込み
+
+XRiftでは、ワールドのアセットは自動的にCDNにアップロードされ、適切なベースURLが注入されます。アセットを読み込む際は、専用のヘルパー関数を使用してください。
+
+```typescript
+import { useWorldGLTF, useWorldTexture } from './utils/useWorldAsset'
+
+function MyModel() {
+  // GLTFモデルを読み込む（相対パスで指定）
+  const gltf = useWorldGLTF('./models/robot.gltf')
+
+  return <primitive object={gltf.scene} />
+}
+
+function MyMaterial() {
+  // テクスチャを読み込む
+  const texture = useWorldTexture('./textures/albedo.png')
+
+  return <meshStandardMaterial map={texture} />
+}
+
+function MyPBRMaterial() {
+  // 複数のテクスチャを同時に読み込む
+  const [albedo, normal, roughness] = useWorldTexture([
+    './textures/albedo.png',
+    './textures/normal.png',
+    './textures/roughness.png',
+  ])
+
+  return (
+    <meshStandardMaterial
+      map={albedo}
+      normalMap={normal}
+      roughnessMap={roughness}
+    />
+  )
+}
+```
+
+**重要**: `@react-three/drei`の`useGLTF`や`useTexture`を直接使用せず、必ず`useWorldGLTF`と`useWorldTexture`を使用してください。これにより、XRiftプラットフォーム上で正しくアセットが読み込まれます。
+
 ### 4. ビルド
 
 ```bash
