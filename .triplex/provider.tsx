@@ -7,7 +7,7 @@ export function CanvasProvider({
   children?: React.ReactNode;
 }) {
   return (
-    <XRiftProvider baseUrl="/public/">
+    <XRiftProvider baseUrl="/">
       <Physics>{children}</Physics>
     </XRiftProvider>
   )
