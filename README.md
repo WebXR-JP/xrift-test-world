@@ -52,6 +52,99 @@ npm run dev
 
 詳細なカスタマイズ方法は [TEMPLATE.md](./TEMPLATE.md) を参照してください。
 
+#### アセット（GLTFモデル、テクスチャ）の読み込み
+
+XRiftでは、ワールドのアセットは自動的にCDNにアップロードされ、適切なベースURLが注入されます。アセットを読み込む際は、`@xrift/world-components`パッケージの`useXRift`フックを使用してベースURLを取得してください。
+
+```typescript
+import { useXRift } from '@xrift/world-components'
+import { useGLTF, useTexture } from '@react-three/drei'
+
+function MyModel() {
+  const { baseUrl } = useXRift()
+
+  // ベースURLと相対パスを結合してGLTFモデルを読み込む
+  const gltf = useGLTF(`${baseUrl}models/robot.gltf`)
+
+  return <primitive object={gltf.scene} />
+}
+
+function MyMaterial() {
+  const { baseUrl } = useXRift()
+
+  // テクスチャを読み込む
+  const texture = useTexture(`${baseUrl}textures/albedo.png`)
+
+  return <meshStandardMaterial map={texture} />
+}
+
+function MyPBRMaterial() {
+  const { baseUrl } = useXRift()
+
+  // 複数のテクスチャを同時に読み込む
+  const [albedo, normal, roughness] = useTexture([
+    `${baseUrl}textures/albedo.png`,
+    `${baseUrl}textures/normal.png`,
+    `${baseUrl}textures/roughness.png`,
+  ])
+
+  return (
+    <meshStandardMaterial
+      map={albedo}
+      normalMap={normal}
+      roughnessMap={roughness}
+    />
+  )
+}
+```
+
+**重要**: アセットパスを指定する際は、必ず`useXRift()`で取得した`baseUrl`を使用してください。これにより、XRiftプラットフォーム上で正しくアセットが読み込まれます。
+
+##### アセットファイルの配置
+
+アセットファイル（GLBモデル、テクスチャ画像など）は`public/`ディレクトリに配置してください。
+
+```
+your-world-project/
+├── public/
+│   ├── models/
+│   │   └── robot.glb
+│   ├── textures/
+│   │   ├── albedo.png
+│   │   ├── normal.png
+│   │   └── roughness.png
+│   └── skybox.jpg
+├── src/
+│   └── World.tsx
+└── package.json
+```
+
+`public/`内のファイルは、ビルド時に自動的にCDNにアップロードされ、`baseUrl`経由でアクセスできるようになります。
+
+##### ローカル開発環境での設定
+
+ローカルで開発する際は、`@xrift/world-components`の`XRiftProvider`を使用してベースURLを設定してください。
+
+```typescript
+// src/dev.tsx（開発用エントリーポイント）
+import { XRiftProvider } from '@xrift/world-components'
+import { World } from './World'
+
+function App() {
+  return (
+    <XRiftProvider baseUrl="/public/">
+      <Canvas>
+        <Physics>
+          <World />
+        </Physics>
+      </Canvas>
+    </XRiftProvider>
+  )
+}
+```
+
+本番環境（XRiftプラットフォーム上）では、フロントエンド側が自動的に`XRiftProvider`でワールドコンポーネントをラップするため、ワールド側で`XRiftProvider`を使用する必要はありません。
+
 ### 4. ビルド
 
 ```bash

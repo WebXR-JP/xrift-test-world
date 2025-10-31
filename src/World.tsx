@@ -1,8 +1,10 @@
 import { RigidBody } from '@react-three/rapier'
 import { useRef } from 'react'
 import { Mesh } from 'three'
+import { Duck } from './components/Duck'
 import { Mirror } from './components/Mirror'
 import { RotatingObject } from './components/RotatingObject'
+import { Skybox } from './components/Skybox'
 import { COLORS, WORLD_CONFIG } from './constants'
 
 export interface WorldProps {
@@ -18,6 +20,9 @@ export const World: React.FC<WorldProps> = ({ position = [0, 0, 0], scale = 1 })
 
   return (
     <group position={position} scale={scale}>
+      {/* Skybox - 360度パノラマ背景 */}
+      <Skybox radius={500} />
+
       {/* 照明設定 */}
       <ambientLight intensity={0.3} />
       <directionalLight
@@ -185,6 +190,11 @@ export const World: React.FC<WorldProps> = ({ position = [0, 0, 0], scale = 1 })
         height={2}
         scale={scale}
       />
+
+      {/* Duck 3Dモデル - useXRiftの使用例 */}
+      <RigidBody type="dynamic" colliders="cuboid" restitution={0} friction={0}>
+        <Duck position={[-2, 0.5, 0]} scale={1} />
+      </RigidBody>
     </group>
   )
 }

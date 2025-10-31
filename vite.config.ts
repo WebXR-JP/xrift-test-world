@@ -44,6 +44,10 @@ export default defineConfig({
           singleton: true,
           requiredVersion: '^10.7.3',
         },
+        '@xrift/world-components': {
+          singleton: true,
+          requiredVersion: '^0.1.0',
+        },
       },
     }),
   ],

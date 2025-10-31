@@ -1,3 +1,4 @@
+import { XRiftProvider } from '@xrift/world-components'
 import { Physics } from '@react-three/rapier'
 
 export function CanvasProvider({
@@ -5,5 +6,9 @@ export function CanvasProvider({
 }: {
   children?: React.ReactNode;
 }) {
-  return <Physics>{children}</Physics>
+  return (
+    <XRiftProvider baseUrl="/public/">
+      <Physics>{children}</Physics>
+    </XRiftProvider>
+  )
 }
