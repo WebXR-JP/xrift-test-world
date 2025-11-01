@@ -189,6 +189,43 @@ npm run typecheck
 - **TypeScript**: 5.x
 - **Vite**: 6.x（ビルドツール）
 
+## プロジェクト設定（xrift.json）
+
+プロジェクトルートの`xrift.json`で、XRift CLIの動作をカスタマイズできます。
+
+### 設定例
+
+```json
+{
+  "world": {
+    "distDir": "./dist",
+    "title": "サンプルワールド",
+    "description": "React Three FiberとRapierで作られたサンプルワールドです",
+    "thumbnailPath": "thumbnail.png",
+    "buildCommand": "npm run build"
+  }
+}
+```
+
+### 設定項目
+
+- `distDir` (必須): アップロードするビルド済みファイルが格納されているディレクトリ
+- `title` (任意): ワールドのタイトル（プロンプトのデフォルト値になります）
+- `description` (任意): ワールドの説明（プロンプトのデフォルト値になります）
+- `thumbnailPath` (任意): `distDir`内のサムネイル画像の相対パス（例: `thumbnail.png`）
+- `buildCommand` (任意): アップロード前に自動実行するビルドコマンド
+
+### メリット
+
+#### buildCommand
+ユーザーがビルド忘れをしなくなり、`xrift upload world`だけでビルド→アップロードが完了します。
+
+#### title/description
+初回アップロード時のプロンプトにデフォルト値が表示されるため、テンプレートをそのまま使う場合でも適切なタイトルが設定されます。
+
+#### thumbnailPath
+サムネイル画像がフロントエンドのワールド一覧に表示され、ビジュアル的に分かりやすくなります。
+
 ## ワールドの公開
 
 XRiftプラットフォームでワールドを公開する方法については、[XRift公式ドキュメント](https://github.com/WebXR-JP/xrift-cli)を参照してください。

@@ -1,5 +1,9 @@
 {
   "world": {
-    "distDir": "./dist"
+    "distDir": "./dist",
+    "title": "サンプルワールド",
+    "description": "React Three FiberとRapierで作られたサンプルワールドです",
+    "thumbnailPath": "thumbnail.png",
+    "buildCommand": "npm run build"
   }
 }
