@@ -4,7 +4,7 @@ XRiftで動作するWebXRワールドを作成するための公式テンプレ�
 
 ## 概要
 
-このテンプレートは、XRift CLI (`npx @xrift/cli create`) で新しいワールドプロジェクトを作成する際に使用されます。React Three Fiber、Rapier物理エンジン、Three.jsを使用した3Dワールドの基本構成がセットアップ済みで、すぐに開発を始められます。
+このテンプレートは、XRift CLIで新しいワールドプロジェクトを作成する際に使用されます。React Three Fiber、Rapier物理エンジン、Three.jsを使用した3Dワールドの基本構成がセットアップ済みで、すぐに開発を始められます。
 
 ## このテンプレートに含まれる機能
 
@@ -27,15 +27,27 @@ XRiftで動作するWebXRワールドを作成するための公式テンプレ�
 
 ## 使い方
 
-### 1. 新しいワールドプロジェクトを作成
+### 1. XRift CLIをインストール
 
 ```bash
-npx @xrift/cli create my-world
+npm install -g @xrift/cli
+```
+
+### 2. XRiftにログイン
+
+```bash
+xrift login
+```
+
+### 3. 新しいワールドプロジェクトを作成
+
+```bash
+xrift create my-world
 ```
 
 このコマンドで、このテンプレートを基にした新しいプロジェクトが作成されます。
 
-### 2. 開発サーバーを起動
+### 4. 開発サーバーを起動
 
 ```bash
 cd my-world
@@ -43,7 +55,7 @@ npm install
 npm run dev
 ```
 
-### 3. カスタマイズ
+### 5. カスタマイズ
 
 - `src/World.tsx`: メインのワールドコンポーネント
 - `src/components/`: 各種3Dオブジェクトのコンポーネント
@@ -155,7 +167,7 @@ function App() {
 
 このファイルは、XRift CLIでワールドをデプロイする際に自動的に作成・更新されます。開発者が手動で編集する必要はありません。
 
-### 4. ビルド
+### 6. ビルド
 
 ```bash
 npm run build
